@@ -2,3 +2,4 @@ streamlit-option-menu==0.3.2
 matplotlib==3.5.2
 plotly==5.9.0
 python-math==0.0.1
+statsmodels==0.13.2
