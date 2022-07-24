@@ -5,26 +5,29 @@ import streamlit.components.v1 as components
 
 def app():
 
-    st.markdown("# Data")
+    st.markdown("# 🔽 Data")
     
     st.markdown("### Soccer Games Data Extraction Tool")
 
     st.write("The following is the DataFrame of the `games` dataset. You can filter your data using the sidebar selector boxes.")
 
     with st.sidebar:
-        embed_component= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="camilo-manzur-4b7137a8" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://mx.linkedin.com/in/camilo-manzur-4b7137a8?trk=profile-badge"></a></div>""", 'medium':"""<div style="overflow-y: scroll; height:500px;"> <div id="retainable-rss-embed" 
-        data-rss="https://medium.com/feed/retainable,https://medium.com/feed/data-science-in-your-pocket"
-        data-maxcols="3" 
-        data-layout="grid"
-        data-poststyle="inline" 
-        data-readmore="Read the rest" 
-        data-buttonclass="btn btn-primary" 
-        ata-offset="0"></div></div> <script src="https://www.twilik.com/assets/retainable/rss-embed/retainable-rss-embed.js"></script>"""
-        }
-        components.html(embed_component['linkedin'],height=250)   
+        st.markdown('# 📧 Contact Me ')
 
-        st.markdown('### Apply the filters you want to get your data:') 
+        with st.expander("LinkedIn"):
+            embed_component= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="camilo-manzur-4b7137a8" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://mx.linkedin.com/in/camilo-manzur-4b7137a8?trk=profile-badge"></a></div>""", 'medium':"""<div style="overflow-y: scroll; height:500px;"> <div id="retainable-rss-embed" 
+            data-rss="https://medium.com/feed/retainable,https://medium.com/feed/data-science-in-your-pocket"
+            data-maxcols="3" 
+            data-layout="grid"
+            data-poststyle="inline" 
+            data-readmore="Read the rest" 
+            data-buttonclass="btn btn-primary" 
+            ata-offset="0"></div></div> <script src="https://www.twilik.com/assets/retainable/rss-embed/retainable-rss-embed.js"></script>"""
+            }
+            components.html(embed_component['linkedin'],height=250)
+
+        st.markdown('# 🔎 Filters')
 
     df_games = pd.read_csv('dataset/games.csv')
     df_competitions = pd.read_csv('dataset/competitions.csv')
@@ -64,15 +67,15 @@ def app():
     years_choice = st.sidebar.selectbox('Select the season:', years)
     competitions = df_games['name'].drop_duplicates()
     competition_choice = st.sidebar.multiselect(
-     'Select your competitions',competitions, default = "premier-league")
+     'Select the league:',competitions, default = "premier-league")
     clubs = df_games.query("name == @competition_choice").query("season == @years_choice")['Home_club_name'].drop_duplicates().sort_values()
     clubs_choice = st.sidebar.multiselect(
-     'Select the clubs you want to see',clubs)    
+     'Select the clubs:',clubs)    
     
     df_games = df_games.query("season == @years_choice").query("name == @competition_choice").query("Home_club_name == @clubs_choice | Away_club_name == @clubs_choice")
 
     st.download_button(
-     label="Download data as CSV",
+     label="Download data as CSV 🖱️",
      data=df_games.to_csv(),
      file_name='large_df.csv',
      mime='text/csv',
