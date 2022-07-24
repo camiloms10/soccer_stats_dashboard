@@ -36,7 +36,7 @@ This multi-page app is using this [Kaggle Dataset](https://www.kaggle.com/datase
         with st.container():
             col1, col2 = st.columns(2)
             with col1:
-                st.image("dashboard_gif.gif")
+                st.image("images/dashboard_gif.gif")
             with col2:
                 st.markdown("""
                     This dashboard lets you get data in multiple levels and sections like:
@@ -50,7 +50,7 @@ This multi-page app is using this [Kaggle Dataset](https://www.kaggle.com/datase
         with st.container():
             col1, col2 = st.columns(2)
             with col1:
-               st.image("download_gif.gif")
+               st.image("images/download_gif.gif")
             with col2:
                 st.markdown("""
                     This dashboard lets you extract the games.csv data filtered by:
