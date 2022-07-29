@@ -255,7 +255,7 @@ def app():
 
         fig_goals = px.bar(df_goals.sort_values('goals',ascending=False).head(25), x='Player_name', y='goals', title = "Top 25 goal scorers", color='goals', hover_data= ["goals_per_90_min"],text_auto=True)
         fig_assists = px.bar(df_goals.sort_values('assists',ascending=False).head(25), x='Player_name', y='assists', title = "Top 25 assists leaders", color="assists", hover_data= ["assists_per_90_min"],text_auto=True)
-        fig_g_a= px.bar(df_goals.sort_values('G+A',ascending=False).head(25), x='Player_name', y='G+A', title = "Top 25 assists leaders", color = "G+A", hover_data=["goals","assists"],text_auto=True)
+        fig_g_a= px.bar(df_goals.sort_values('G+A',ascending=False).head(25), x='Player_name', y='G+A', title = "Top 25 G+A leaders", color = "G+A", hover_data=["goals","assists"],text_auto=True)
 
 
         st.plotly_chart(fig_goals)
